@@ -76,11 +76,16 @@ object App {
         val re = " ([A-Za-z]+)\\.".r
         val title = re.findFirstIn(str).toString()
         val new_title = title.replace("Mlle", "Miss").replace("Ms", "Miss").replace("Mme", "Mrs").replace("Some(", "").replace(")", "").trim()
-        val list_ = Seq("Lady", "Countess","Capt", "Col","Don", "Dr", "Major", "Rev", "Sir", "Jonkheer", "Dona")
-        for (i <- list_) {
-            new_title.replace(i, "Rare")
-        }
-        return new_title
+//        val list_ = Seq("Lady", "Countess","Capt", "Col","Don", "Dr", "Major", "Rev", "Sir", "Jonkheer", "Dona")
+//        for (i <- list_) {
+//            new_title.replace(i, "Rare")
+//        }
+        val newest_title = new_title.replace("Lady", "Rare").replace("Capt", "Rare").replace("Countess", "Rare")
+  .replace("Col", "Rare").replace("Don", "Rare").replace("Dr", "Rare").replace("Major", "Rare")
+  .replace("Rev", "Rare").replace("Sir", "Rare").replace("Jonkheer", "Rare")
+  .replace("Dona", "Rare")
+
+        return newest_title
     }
     val nameUDF = udf((name: String) => {
         preprocessString(name)
